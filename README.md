@@ -32,6 +32,8 @@
 <br/>
 <a style="padding-left: 20px" href="https://github.com/leandrofahur">Leandro Machado - 300326045</a>
 <a style="padding-left: 20px" href="https://github.com/marimagalhaesl">Mariana Magalhães - 300330330</a>
+<a style="padding-left: 20px" href="https://github.com/sebastian-gm">Sebastian Gonzalez - 300326988</a>
+<a style="padding-left: 20px" href="https://github.com/FourSeasonK">Sung Ah Kim - 300341721</a>
 <br/>
 
 <h2>🥷 <strong>Github Best Practices</strong></h2>
