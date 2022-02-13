@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,7 +28,8 @@ import com.example.demo.repositories.ProductRepository;
 public class ProductController {
 	@Autowired
 	ProductRepository productRepository;
-	
+
+	// ----------
 	@GetMapping("/products")
 	public ResponseEntity<List<Product>> getAllProducts(@RequestParam(required=false) String name) {
 		try {
@@ -56,6 +58,8 @@ public class ProductController {
 		}	
 	}
 	
+	
+	// ----------	
 	@PostMapping("/products")
 	public ResponseEntity<Product> createProduct(@RequestBody Product newProduct) {
 		try {
@@ -66,6 +70,9 @@ public class ProductController {
 		}		
 	}
 	
+	
+	
+	// ----------
 	@PutMapping("/products/{id}")
 	public ResponseEntity<Product> updateProduct(@PathVariable("id") long id, @RequestBody Product updatedProduct) {
 		Optional<Product> product = productRepository.findById(id);
@@ -86,4 +93,15 @@ public class ProductController {
 	
 	
 	
+	// ----------
+	@DeleteMapping("/products/{id}")
+	public ResponseEntity<Product> deleteProduct(@PathVariable("id") long id) {		
+		try {					
+			productRepository.deleteById(id);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);			
+		} catch (Exception ex) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+						
+	}
 }
