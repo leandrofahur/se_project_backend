@@ -1,5 +1,7 @@
 package com.example.demo.models;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,7 +27,14 @@ public class Product {
 	private Float price;
 	
 	@Column(name="SKU")
-	private String SKU;
+	private String sku;
+	
+	@Column(name="created_at")
+	private Date createdAt;
+	
+	@Column(name="updated_at")
+	private Date updatedAt;
+	
 
 	// TODO: Add category_id | inventory_id | discount_id | image_id and their proper relationships.
 	
@@ -40,7 +49,9 @@ public class Product {
 		this.name = name;
 		this.description = description;
 		this.price = price;
-		SKU = sKU;
+		sku = sKU;
+		this.createdAt = new Date();
+		this.updatedAt = new Date();
 	}
 
 	public long getId() {
@@ -76,10 +87,20 @@ public class Product {
 	}
 
 	public String getSKU() {
-		return SKU;
+		return sku;
 	}
 
 	public void setSKU(String sKU) {
-		SKU = sKU;
+		sku = sKU;
 	}
+
+	public Date getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+	
+	
 }
