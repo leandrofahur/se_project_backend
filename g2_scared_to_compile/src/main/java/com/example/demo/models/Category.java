@@ -12,16 +12,12 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
-@Table(name="products")
-public class Product {
+@Table(name="categories")
+public class Category {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -33,40 +29,24 @@ public class Product {
 	@Column(name="description")
 	private String description;
 	
-	@Column(name="price")
-	private Float price;
-	
-	// https://www.tradegecko.com/free-tools/sku-generator
-	@Column(name="SKU")
-	private String sku;
-	
 	@Column(name="created_at")
 	private Date createdAt;
 	
 	@Column(name="updated_at")
 	private Date updatedAt;
+
+	@ManyToMany(mappedBy="categories", fetch=FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	private List<Product> products = new ArrayList<>();
 	
-	@JsonIgnore
-	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinTable(name="product_category",
-	joinColumns = @JoinColumn(name = "product_id"),
-	inverseJoinColumns = @JoinColumn(name ="category_id"))
-	private List<Category> categories = new ArrayList<>();
-	
-	// TODO: Add inventory_id | discount_id | image_id and their proper relationships.
-	
-	public Product() {
+	public Category() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	// TODO: Remember to re-generate with the new attributes on-hold: 
-	public Product(String name, String description, Float price, String sKU) {
+	public Category(String name, String description) {
 		super();
 		this.name = name;
 		this.description = description;
-		this.price = price;
-		sku = sKU;
 		this.createdAt = new Date();
 		this.updatedAt = new Date();
 	}
@@ -95,20 +75,12 @@ public class Product {
 		this.description = description;
 	}
 
-	public Float getPrice() {
-		return price;
+	public Date getCreatedAt() {
+		return createdAt;
 	}
 
-	public void setPrice(Float price) {
-		this.price = price;
-	}
-
-	public String getSKU() {
-		return sku;
-	}
-
-	public void setSKU(String sKU) {
-		sku = sKU;
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
 	}
 
 	public Date getUpdatedAt() {
@@ -119,12 +91,12 @@ public class Product {
 		this.updatedAt = updatedAt;
 	}
 
-	public List<Category> getCategories() {
-		return categories;
+	public List<Product> getProducts() {
+		return products;
 	}
 
-	public void setCategories(List<Category> categories) {
-		this.categories = categories;
+	public void setProducts(List<Product> products) {
+		this.products = products;
 	}
 
 	@Override
@@ -140,7 +112,9 @@ public class Product {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Product other = (Product) obj;
+		Category other = (Category) obj;
 		return id == other.id;
-	}	
+	}
+	
+	
 }
