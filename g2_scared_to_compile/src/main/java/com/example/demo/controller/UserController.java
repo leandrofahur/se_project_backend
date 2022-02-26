@@ -65,7 +65,9 @@ public class UserController {
 	public ResponseEntity<User> createUser(@RequestBody User user){
 		
 		try {
-			User _user = userRepository.save(new User(user.getFirstName(), user.getLastName(),
+//			User _user = userRepository.save(new User(user.getFirstName(), user.getLastName(),
+//					user.getUserName(), user.getPassword(), user.getIsAdmin(), user.getEmail()));
+			User _user = userRepository.save(new User(user.getUserId(), user.getFirstName(), user.getLastName(),
 					user.getUserName(), user.getPassword(), user.getIsAdmin(), user.getEmail()));
 			
 			return new ResponseEntity<>(_user,HttpStatus.CREATED);

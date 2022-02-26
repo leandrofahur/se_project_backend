@@ -1,19 +1,32 @@
 package com.example.demo.model;
 
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "users")
 public class User {
 	
+//	@Id
+//	@GeneratedValue(strategy = GenerationType.AUTO)
+//	private long userId;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+	
+	@Column(name = "userId")
+	private String userId;
 	
 	@Column(name = "firstName")
 	private String firstName;
@@ -33,18 +46,41 @@ public class User {
 	@Column(name = "email")
 	private String email;
 	
+	@Column(name="created_at")
+	private Date createdAt;
+	
+	@Column(name="updated_at")
+	private Date updatedAt;
+	
+	
+//	@OneToMany(mappedBy = "users", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+//	private Set<UserPhone> userPhone = new HashSet<>();
+	
 	public User() {}
 
-	public User(String firstName, String lastName, String userName, String password, boolean is_admin, String email) {
+	//public User(String firstName, String lastName, String userName, String password, boolean is_admin, String email) {
+	public User(String userId, String firstName, String lastName, String userName, String password, boolean is_admin, String email) {
 		super();
+		this.userId = userId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.userName = userName;
 		this.password = password;
 		this.isAdmin = is_admin;
 		this.email = email;
+		
+		this.createdAt = new Date();
+		this.updatedAt = new Date();
 	}
 
+//	public long getId() {
+//		return userId;
+//	}
+//
+//	public void setId(long id) {
+//		this.userId = id;
+//	}
+	
 	public long getId() {
 		return id;
 	}
@@ -53,6 +89,14 @@ public class User {
 		this.id = id;
 	}
 
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	
 	public String getFirstName() {
 		return firstName;
 	}
@@ -101,6 +145,32 @@ public class User {
 		this.email = email;
 	}
 	
+//	public Set<UserPhone> getUserPhone() {
+//		return userPhone;
+//	}
+//
+//	public void setUserPhone(Set<UserPhone> userPhone) {
+//		this.userPhone = userPhone;
+//	}
+//
+//	public void addUserPhoneInfo(UserPhone userPhone) {
+//		this.userPhone.add(userPhone);
+//		userPhone.getUsers().add(this);
+//	}
+//	
+//	public void removeUserPhoneInfo(UserPhone userPhone) {
+//		userPhone.getUsers().remove(this);
+//		this.userPhone.remove(userPhone);
+//	}
+//	
+	
+	public Date getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
+	}
 	
 	
 	
