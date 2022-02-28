@@ -15,19 +15,16 @@ public class Session {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	@Column(name = "user_id")
-	private int userId;
 	
 	@Column(name = "total")
-	private float total;
+	private double total;
 
 	public Session() {
 
 	}
 
-	public Session(int userId, float total) {
+	public Session(double total) {
 		super();
-		this.userId = userId;
 		this.total = total;
 	}
 
@@ -39,19 +36,12 @@ public class Session {
 		this.id = id;
 	}
 
-	public int getUserId() {
-		return userId;
-	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-
-	public float getTotal() {
+	public double getTotal() {
 		return total;
 	}
 
-	public void setTotal(float total) {
+	public void setTotal(double total) {
 		this.total = total;
 	}
 	

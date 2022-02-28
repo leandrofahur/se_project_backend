@@ -66,7 +66,7 @@ public class SessionController {
 	public ResponseEntity<Session> InsertSession(@RequestBody Session newSession) {
 		
 		try {
-			Session session = sessionRepository.save(new Session(newSession.getUserId(), newSession.getTotal()));
+			Session session = sessionRepository.save(new Session(newSession.getTotal()));
 			return new ResponseEntity<>(session, HttpStatus.CREATED);
 			
 		} catch (Exception ex) {
@@ -82,7 +82,6 @@ public class SessionController {
 
 		if (session.isPresent()) {
 			Session updatedSession = session.get();
-			updatedSession.setUserId(newSession.getUserId());
 			updatedSession.setTotal(newSession.getTotal());
 			
 			return new ResponseEntity<>(sessionRepository.save(updatedSession), HttpStatus.OK);
