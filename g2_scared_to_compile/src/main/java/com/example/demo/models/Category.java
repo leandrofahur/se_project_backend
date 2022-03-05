@@ -1,9 +1,8 @@
 package com.example.demo.models;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -36,7 +35,7 @@ public class Category {
 	private Date updatedAt;
 
 	@ManyToMany(mappedBy="categories", fetch=FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	private List<Product> products = new ArrayList<>();
+	private Set<Product> products = new HashSet<>();
 	
 	public Category() {
 		super();
@@ -91,30 +90,11 @@ public class Category {
 		this.updatedAt = updatedAt;
 	}
 
-	public List<Product> getProducts() {
+	public Set<Product> getProducts() {
 		return products;
 	}
 
-	public void setProducts(List<Product> products) {
+	public void setProducts(Set<Product> products) {
 		this.products = products;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Category other = (Category) obj;
-		return id == other.id;
-	}
-	
-	
+	}	
 }

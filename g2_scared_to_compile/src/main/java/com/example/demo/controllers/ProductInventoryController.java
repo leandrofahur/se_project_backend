@@ -17,7 +17,7 @@ import com.example.demo.repositories.InventoryRepository;
 @RestController
 @CrossOrigin(origins = "http://localhost:8081")
 @RequestMapping("/api")
-public class InventoryController {
+public class ProductInventoryController {
 	@Autowired
 	InventoryRepository inventoryRepository;
 	

@@ -1,9 +1,8 @@
 package com.example.demo.models;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -51,7 +50,7 @@ public class Product {
 	@JoinTable(name="product_category",
 	joinColumns = @JoinColumn(name = "product_id"),
 	inverseJoinColumns = @JoinColumn(name ="category_id"))
-	private List<Category> categories = new ArrayList<>();
+	private Set<Category> categories = new HashSet<>();
 	
 	// TODO: Add inventory_id | discount_id | image_id and their proper relationships.
 	
@@ -119,28 +118,12 @@ public class Product {
 		this.updatedAt = updatedAt;
 	}
 
-	public List<Category> getCategories() {
+	public Set<Category> getCategories() {
 		return categories;
 	}
 
-	public void setCategories(List<Category> categories) {
+	public void setStudents(Set<Category> categories) {
 		this.categories = categories;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Product other = (Product) obj;
-		return id == other.id;
 	}	
+
 }

@@ -94,8 +94,19 @@ public class ProductController {
 	
 	
 	// ----------
+	@DeleteMapping("/products")
+	public ResponseEntity<HttpStatus> deleteAllProducts() {		
+		try {					
+			productRepository.deleteAll();
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);			
+		} catch (Exception ex) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+						
+	}
+	
 	@DeleteMapping("/products/{id}")
-	public ResponseEntity<Product> deleteProduct(@PathVariable("id") long id) {		
+	public ResponseEntity<HttpStatus> deleteProduct(@PathVariable("id") long id) {		
 		try {					
 			productRepository.deleteById(id);
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);			
