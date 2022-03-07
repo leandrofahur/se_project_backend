@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -65,9 +66,8 @@ public class UserController {
 	public ResponseEntity<User> createUser(@RequestBody User user){
 		
 		try {
-//			User _user = userRepository.save(new User(user.getFirstName(), user.getLastName(),
-//					user.getUserName(), user.getPassword(), user.getIsAdmin(), user.getEmail()));
-			User _user = userRepository.save(new User(user.getUserId(), user.getFirstName(), user.getLastName(),
+
+			User _user = userRepository.save(new User(user.getFirstName(), user.getLastName(),
 					user.getUserName(), user.getPassword(), user.getIsAdmin(), user.getEmail()));
 			
 			return new ResponseEntity<>(_user,HttpStatus.CREATED);
@@ -89,6 +89,7 @@ public class UserController {
 			_user.setPassword(user.getPassword());
 			_user.setIsAdmin(user.getIsAdmin());
 			_user.setEmail(user.getEmail());
+			_user.setUpdatedAt(new Date());
 			
 			return new ResponseEntity<>(userRepository.save(_user),HttpStatus.OK);
 			

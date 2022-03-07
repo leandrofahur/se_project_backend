@@ -4,10 +4,15 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "userPayments")
@@ -32,6 +37,10 @@ public class UserPayment {
 	@Column(name="updated_at")
 	private Date updatedAt;
 	
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "user_id", nullable = false)
+	@JsonIgnore
+    private User user;
 	
 	public UserPayment() {}
 
@@ -42,8 +51,8 @@ public class UserPayment {
 		this.expirationDate = expirationDate;
 		this.cvc = cvc;
 		
-		this.createdAt = createdAt;
-		this.updatedAt = updatedAt;
+		this.createdAt = new Date();
+		this.updatedAt = new Date();
 	}
 
 
@@ -106,7 +115,14 @@ public class UserPayment {
 		this.updatedAt = updatedAt;
 	}
 	
-	
+	public User getUser() {
+		return user;
+	}
+
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 	
 	
 

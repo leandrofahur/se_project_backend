@@ -8,8 +8,8 @@ import com.example.demo.model.UserPhone;
 
 public interface UserPhoneRepository extends JpaRepository<UserPhone, Long> {
 	
-	Optional<UserPhone> findByUserPhoneId(String userPhoneId);
+	Optional<UserPhone> findById(String id);
 	
-	Boolean existsByUserPhoneId(String userPhoneId);
+	Boolean existsById(String id);
 
 }

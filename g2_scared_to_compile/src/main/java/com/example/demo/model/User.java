@@ -18,15 +18,9 @@ import javax.persistence.Table;
 @Table(name = "users")
 public class User {
 	
-//	@Id
-//	@GeneratedValue(strategy = GenerationType.AUTO)
-//	private long userId;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	
-	@Column(name = "userId")
-	private String userId;
 	
 	@Column(name = "firstName")
 	private String firstName;
@@ -52,16 +46,15 @@ public class User {
 	@Column(name="updated_at")
 	private Date updatedAt;
 	
-	
-//	@OneToMany(mappedBy = "users", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-//	private Set<UserPhone> userPhone = new HashSet<>();
+	//mappedBy = "user": the class name with small letter
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Set<UserPhone> userPhone = new HashSet<>();
 	
 	public User() {}
 
 	//public User(String firstName, String lastName, String userName, String password, boolean is_admin, String email) {
-	public User(String userId, String firstName, String lastName, String userName, String password, boolean is_admin, String email) {
+	public User(String firstName, String lastName, String userName, String password, boolean is_admin, String email) {
 		super();
-		this.userId = userId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.userName = userName;
@@ -72,14 +65,6 @@ public class User {
 		this.createdAt = new Date();
 		this.updatedAt = new Date();
 	}
-
-//	public long getId() {
-//		return userId;
-//	}
-//
-//	public void setId(long id) {
-//		this.userId = id;
-//	}
 	
 	public long getId() {
 		return id;
@@ -87,14 +72,6 @@ public class User {
 
 	public void setId(long id) {
 		this.id = id;
-	}
-
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
 	}
 	
 	public String getFirstName() {
@@ -145,13 +122,13 @@ public class User {
 		this.email = email;
 	}
 	
-//	public Set<UserPhone> getUserPhone() {
-//		return userPhone;
-//	}
-//
-//	public void setUserPhone(Set<UserPhone> userPhone) {
-//		this.userPhone = userPhone;
-//	}
+	public Set<UserPhone> getUserPhone() {
+		return userPhone;
+	}
+
+	public void setUserPhone(Set<UserPhone> userPhone) {
+		this.userPhone = userPhone;
+	}
 //
 //	public void addUserPhoneInfo(UserPhone userPhone) {
 //		this.userPhone.add(userPhone);

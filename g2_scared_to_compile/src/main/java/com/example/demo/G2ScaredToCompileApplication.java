@@ -21,14 +21,11 @@ public class G2ScaredToCompileApplication {
 	ApplicationRunner init(UserRepository userRepository, UserPhoneRepository userPhoneRepository) {
 		return args->{
 			
-//			userRepository.save(new User("Han-Do", "Lee", "HandsomeGuy", "12345L", true, "handolee@somewhere.com"));
-//			userRepository.save(new User("Mariana", "Lima", "BeautifulGirl", "67890M", true, "mariana@somewhere.com"));
-//			userRepository.save(new User("Sebastian", "Mendez", "CharmingGuy", "54321S", true, "sebastian@somewhere.com"));
-//			userRepository.findAll().forEach(System.out::println);
-			userRepository.save(new User("123A", "Han-Do", "Lee", "HandsomeGuy", "12345L", true, "handolee@somewhere.com"));
-			userRepository.save(new User("456B", "Mariana", "Lima", "BeautifulGirl", "67890M", true, "mariana@somewhere.com"));
-			userRepository.save(new User("789C", "Sebastian", "Mendez", "CharmingGuy", "54321S", true, "sebastian@somewhere.com"));
+			userRepository.save(new User("Han-Do", "Lee", "HandsomeGuy", "12345L", true, "handolee@somewhere.com"));
+			userRepository.save(new User("Mariana", "Lima", "BeautifulGirl", "67890M", true, "mariana@somewhere.com"));
+			userRepository.save(new User("Sebastian", "Mendez", "CharmingGuy", "54321S", true, "sebastian@somewhere.com"));
 			userRepository.findAll().forEach(System.out::println);
+
 			
 //			User[] users  = {
 //					new User("123A","Han-Do", "Lee", "HandsomeGuy", "12345L", true, "handolee@somewhere.com"),
