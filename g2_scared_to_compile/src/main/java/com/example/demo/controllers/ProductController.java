@@ -106,7 +106,7 @@ public class ProductController {
 	}
 	
 	@DeleteMapping("/products/{id}")
-	public ResponseEntity<HttpStatus> deleteProduct(@PathVariable("id") long id) {		
+	public ResponseEntity<HttpStatus> deleteProductById(@PathVariable("id") long id) {		
 		try {					
 			productRepository.deleteById(id);
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);			

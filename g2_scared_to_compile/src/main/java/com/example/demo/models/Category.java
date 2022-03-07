@@ -33,9 +33,6 @@ public class Category {
 	
 	@Column(name="updated_at")
 	private Date updatedAt;
-
-	@ManyToMany(mappedBy="categories", fetch=FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	private Set<Product> products = new HashSet<>();
 	
 	public Category() {
 		super();
@@ -88,13 +85,5 @@ public class Category {
 
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
-	}
-
-	public Set<Product> getProducts() {
-		return products;
-	}
-
-	public void setProducts(Set<Product> products) {
-		this.products = products;
 	}	
 }

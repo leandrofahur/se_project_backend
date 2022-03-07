@@ -45,14 +45,7 @@ public class Product {
 	@Column(name="updated_at")
 	private Date updatedAt;
 	
-	@JsonIgnore
-	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinTable(name="product_category",
-	joinColumns = @JoinColumn(name = "product_id"),
-	inverseJoinColumns = @JoinColumn(name ="category_id"))
-	private Set<Category> categories = new HashSet<>();
-	
-	// TODO: Add inventory_id | discount_id | image_id and their proper relationships.
+	// TODO: Add category_id | inventory_id | discount_id | image_id and their proper relationships.
 	
 	public Product() {
 		super();
@@ -117,13 +110,4 @@ public class Product {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-
-	public Set<Category> getCategories() {
-		return categories;
-	}
-
-	public void setStudents(Set<Category> categories) {
-		this.categories = categories;
-	}	
-
 }
