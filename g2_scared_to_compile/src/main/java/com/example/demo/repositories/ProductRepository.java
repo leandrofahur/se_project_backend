@@ -12,6 +12,4 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
 	Optional<Product> findById(long id);
 	
 	List<Product> findByName(String name);
-	
-	// TODO: add methods for the new attributes
 }
