@@ -25,6 +25,11 @@ public class Inventory {
 	@Column(name="updated_at")
 	private Date updatedAt;
 	
+	public Inventory() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public Inventory(int quantity) {
 		super();
 		this.quantity = quantity;

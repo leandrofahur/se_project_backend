@@ -34,5 +34,4 @@ public class G2ScaredToCompileApplication {
 			inventoryRepository.save(new Inventory(100));
 		};
 	}
-
 }
