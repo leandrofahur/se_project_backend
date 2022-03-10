@@ -4,12 +4,12 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.example.demo.model.UserPhone;
+import com.example.demo.model.UserAddress;
 
-public interface UserPhoneRepository extends JpaRepository<UserPhone, Long> {
+public interface UserPayment extends JpaRepository<UserPayment, Long> {
+
 	
-	Optional<UserPhone> findById(long id);
+	Optional<UserPayment> findById(long id);
 	
 	Boolean existsById(long id);
-
 }

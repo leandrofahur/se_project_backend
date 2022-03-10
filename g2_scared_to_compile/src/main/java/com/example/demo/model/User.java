@@ -129,17 +129,17 @@ public class User {
 	public void setUserPhone(Set<UserPhone> userPhone) {
 		this.userPhone = userPhone;
 	}
-//
-//	public void addUserPhoneInfo(UserPhone userPhone) {
-//		this.userPhone.add(userPhone);
-//		userPhone.getUsers().add(this);
-//	}
-//	
+
+	public void addUserPhoneInfo(UserPhone userPhone) {
+		this.userPhone.add(userPhone);
+		userPhone.setUser(this);
+	}
+	
 //	public void removeUserPhoneInfo(UserPhone userPhone) {
-//		userPhone.getUsers().remove(this);
+//		userPhone.getUser().remove(this);
 //		this.userPhone.remove(userPhone);
 //	}
-//	
+	
 	
 	public Date getUpdatedAt() {
 		return updatedAt;
