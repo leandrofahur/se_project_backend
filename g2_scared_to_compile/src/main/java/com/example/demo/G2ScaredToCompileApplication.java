@@ -11,12 +11,15 @@ import com.example.demo.models.Product;
 import com.example.demo.repositories.CategoryRepository;
 import com.example.demo.repositories.InventoryRepository;
 import com.example.demo.repositories.ProductRepository;
+import com.example.demo.models.Session;
+import com.example.demo.repositories.SessionRepository;
 
 @SpringBootApplication
 public class G2ScaredToCompileApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(G2ScaredToCompileApplication.class, args);
+		
 	}
 	
 	@Bean
