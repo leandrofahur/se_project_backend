@@ -28,7 +28,7 @@ public class UserPayment {
 	private String cardNumber;
 	
 	@Column(name = "expirationDate")
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	//@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date expirationDate;
 	
 	@Column(name = "cvc")

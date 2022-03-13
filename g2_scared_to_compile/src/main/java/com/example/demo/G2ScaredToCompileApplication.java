@@ -1,5 +1,8 @@
 package com.example.demo;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,6 +13,7 @@ import com.example.demo.model.UserAddress;
 import com.example.demo.model.UserPayment;
 import com.example.demo.model.UserPhone;
 import com.example.demo.repository.UserAddressRepository;
+import com.example.demo.repository.UserPaymentRepository;
 import com.example.demo.repository.UserPhoneRepository;
 import com.example.demo.repository.UserRepository;
 
@@ -21,7 +25,7 @@ public class G2ScaredToCompileApplication {
 	}
 	
 	@Bean
-	ApplicationRunner init(UserRepository userRepository, UserPhoneRepository userPhoneRepository, UserAddressRepository userAddressRepository) {
+	ApplicationRunner init(UserRepository userRepository, UserPhoneRepository userPhoneRepository, UserAddressRepository userAddressRepository, UserPaymentRepository userPaymentRepository) {
 		return args->{
 			
 //			userRepository.save(new User("Han-Do", "Lee", "HandsomeGuy", "12345L", true, "handolee@somewhere.com"));
@@ -48,9 +52,17 @@ public class G2ScaredToCompileApplication {
 					new UserAddress("501 29th st","21 Main st", "Burnaby", "British Columbia", "Canada", "G7H8I9K")
 			};
 			
-//			UserPayment[] userPayment = {
-//					new UserPayment("1234 5678 8765 4321", "15/07/2024", "123")
-//			};
+			String strDate = "yyyy-MM-dd";
+			SimpleDateFormat dateFormat = new SimpleDateFormat(strDate);
+			Date date1 = dateFormat.parse("2024-07-15");
+			Date date2 = dateFormat.parse("2025-09-23");
+			Date date3 = dateFormat.parse("2023-04-02");
+			
+			UserPayment[] userPayments = {
+					new UserPayment("1234 5678 8765 4321", date1, "123"),
+					new UserPayment("1234 5678 8765 4321", date2, "123"),
+					new UserPayment("1234 5678 8765 4321", date3, "123")
+			};
 			
 			users[0].addUserPhoneInfo(userPhones[0]);
 			users[0].addUserPhoneInfo(userPhones[1]);
@@ -59,6 +71,12 @@ public class G2ScaredToCompileApplication {
 			users[0].addUserAddressInfo(userAddresses[0]);
 			users[1].addUserAddressInfo(userAddresses[1]);
 			users[2].addUserAddressInfo(userAddresses[2]);
+			
+			users[0].addUserPaymentInfo(userPayments[0]);
+			users[1].addUserPaymentInfo(userPayments[1]);
+			users[2].addUserPaymentInfo(userPayments[2]);
+			
+			
 			
 			for(int i = 0; i < users.length; i++) {
 				userRepository.save(users[i]);
@@ -72,9 +90,15 @@ public class G2ScaredToCompileApplication {
 				userAddressRepository.save(userAddresses[i]);
 			}
 			
+			for(int i = 0; i < userPayments.length; i++) {
+				userPaymentRepository.save(userPayments[i]);
+			}
+	
+			
 			userRepository.findAll().forEach(System.out::println);
 			userPhoneRepository.findAll().forEach(System.out::println);
 			userAddressRepository.findAll().forEach(System.out::println);
+			userPaymentRepository.findAll().forEach(System.out::println);
 			
 			
 		};//ending return 
