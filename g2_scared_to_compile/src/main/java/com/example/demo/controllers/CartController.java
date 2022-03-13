@@ -63,9 +63,7 @@ public class CartController {
 	//Insert
 	@PostMapping("/cart")
 	public ResponseEntity<Cart> Insert(@RequestBody Cart newCart) {
-		
 		try {
-			
 			Cart cart = cartRepository.save(new Cart(newCart.getQuantity()));
 			return new ResponseEntity<>(cart, HttpStatus.CREATED);
 			
@@ -92,7 +90,7 @@ public class CartController {
 	}
 	
 	//Delete by ID
-	@DeleteMapping("/students/{id}")
+	@DeleteMapping("/cart/{id}")
 	public ResponseEntity<Cart> DeleteById(@PathVariable("id") long id) {
 		
 		try {

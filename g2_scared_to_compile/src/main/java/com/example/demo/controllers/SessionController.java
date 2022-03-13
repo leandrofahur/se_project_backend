@@ -32,7 +32,7 @@ public class SessionController {
 	
 	
 	//Get All 
-	@GetMapping("/sessions")
+	@GetMapping("/session")
 	public ResponseEntity<List<Session>> GetSessions() {
 		
 		try {
@@ -49,7 +49,7 @@ public class SessionController {
 	}
 	
 	//Get by ID
-	@GetMapping("/sessions/{id}")
+	@GetMapping("/session/{id}")
 	public ResponseEntity<Session> GetById(@PathVariable("id") long id) {
 		
 		Optional<Session> session = sessionRepository.findById(id);
@@ -62,7 +62,7 @@ public class SessionController {
 	}
 	
 	//Insert
-	@PostMapping("/sessions")
+	@PostMapping("/session")
 	public ResponseEntity<Session> InsertSession(@RequestBody Session newSession) {
 		
 		try {
@@ -75,7 +75,7 @@ public class SessionController {
 	}
 	
 	//Update
-	@PutMapping("/sessions/{id}")
+	@PutMapping("/session/{id}")
 	public ResponseEntity<Session> UpdateById(@PathVariable("id") long id, @RequestBody Session newSession) {
 		
 		Optional<Session> session = sessionRepository.findById(id);
@@ -93,7 +93,7 @@ public class SessionController {
 	}
 	
 	//Delete by ID
-	@DeleteMapping("/sessions/{id}")
+	@DeleteMapping("/session/{id}")
 	public ResponseEntity<Session> DeleteById(@PathVariable("id") long id) {
 
 		try {
@@ -108,7 +108,7 @@ public class SessionController {
 	}
 	
 	//Delete All
-	@DeleteMapping("/sessions")
+	@DeleteMapping("/session")
 	public ResponseEntity<Session> DeleteAll() {
 		
 		try {

@@ -13,7 +13,7 @@ public class Cart {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private long id;
 	
 	@Column(name = "session_id")
 	private int sessionId;
@@ -25,11 +25,20 @@ public class Cart {
 	private int quantity;
 
 	public Cart() {
-
+		super();
 	}
 
-	public Cart( int quantity) {
+	public Cart(int quantity) {
+		super();
 		this.quantity = quantity;
+	}
+	
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public int getQuantity() {

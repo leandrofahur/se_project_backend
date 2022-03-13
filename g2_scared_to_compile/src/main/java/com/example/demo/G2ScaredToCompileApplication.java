@@ -5,9 +5,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import com.example.demo.models.Cart;
 import com.example.demo.models.Category;
 import com.example.demo.models.Inventory;
 import com.example.demo.models.Product;
+import com.example.demo.repositories.CartRepository;
 import com.example.demo.repositories.CategoryRepository;
 import com.example.demo.repositories.InventoryRepository;
 import com.example.demo.repositories.ProductRepository;
@@ -23,7 +25,7 @@ public class G2ScaredToCompileApplication {
 	}
 	
 	@Bean
-	ApplicationRunner init(ProductRepository productRepository, CategoryRepository categoryRepository, InventoryRepository inventoryRepository) {
+	ApplicationRunner init(ProductRepository productRepository, CategoryRepository categoryRepository, InventoryRepository inventoryRepository, SessionRepository sessionRepository, CartRepository cartRepository) {
 		return args -> {			
 			productRepository.save(new Product("Product 01", "This is the product 01", 25.0f, "PRO-MED-WHI-COT"));
 			productRepository.save(new Product("Product 02", "This is the product 02", 25.0f, "PRO-LAG-BLA-COT"));
@@ -35,6 +37,20 @@ public class G2ScaredToCompileApplication {
 			inventoryRepository.save(new Inventory(1));
 			inventoryRepository.save(new Inventory(10));
 			inventoryRepository.save(new Inventory(100));
+			
+			sessionRepository.save(new Session(10.0));
+			sessionRepository.save(new Session(50.0));
+			sessionRepository.save(new Session(100.0));
+			sessionRepository.save(new Session(150.0));
+			
+			sessionRepository.save(new Session(10.0));
+			sessionRepository.save(new Session(50.0));
+			sessionRepository.save(new Session(100.0));
+			sessionRepository.save(new Session(150.0));
+			
+			cartRepository.save(new Cart(1));
+			cartRepository.save(new Cart(2));
+			cartRepository.save(new Cart(3));
 		};
 	}
 }
