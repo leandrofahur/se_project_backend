@@ -1,13 +1,20 @@
 package com.example.demo.models;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="categories")
@@ -28,6 +35,10 @@ public class Category {
 	
 	@Column(name="updated_at")
 	private Date updatedAt;
+	
+	@JsonIgnore
+	@ManyToMany(mappedBy = "categories", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	private Set<Product> products = new HashSet<>();
 	
 	public Category() {
 		super();
@@ -80,5 +91,23 @@ public class Category {
 
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
+	}
+
+	public Set<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(Set<Product> products) {
+		this.products = products;
 	}	
+	
+	public void addProduct(Product product) {
+		this.products.add(product);
+		product.getCategories().add(this);
+	}
+
+	public void removeProduct(Product product) {
+		this.products.remove(product);
+		product.getCategories().add(this);
+	}
 }
