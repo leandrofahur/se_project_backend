@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -26,6 +28,7 @@ public class UserPayment {
 	private String cardNumber;
 	
 	@Column(name = "expirationDate")
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date expirationDate;
 	
 	@Column(name = "cvc")

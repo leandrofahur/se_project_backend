@@ -50,6 +50,12 @@ public class User {
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<UserPhone> userPhone = new HashSet<>();
 	
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Set<UserAddress> userAddress = new HashSet<>();
+	
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Set<UserPayment> userPayment = new HashSet<>();
+	
 	public User() {}
 
 	//public User(String firstName, String lastName, String userName, String password, boolean is_admin, String email) {
@@ -130,16 +136,36 @@ public class User {
 		this.userPhone = userPhone;
 	}
 
+	public Set<UserAddress> getUserAddress() {
+		return userAddress;
+	}
+
+	public void setUserAddress(Set<UserAddress> userAddress) {
+		this.userAddress = userAddress;
+	}
+
+	public Set<UserPayment> getUserPayment() {
+		return userPayment;
+	}
+
+	public void setUserPayment(Set<UserPayment> userPayment) {
+		this.userPayment = userPayment;
+	}
+
 	public void addUserPhoneInfo(UserPhone userPhone) {
 		this.userPhone.add(userPhone);
 		userPhone.setUser(this);
 	}
 	
-//	public void removeUserPhoneInfo(UserPhone userPhone) {
-//		userPhone.getUser().remove(this);
-//		this.userPhone.remove(userPhone);
-//	}
+	public void addUserAddressInfo(UserAddress userAddress) {
+		this.userAddress.add(userAddress);
+		userAddress.setUser(this);
+	}
 	
+	public void addUserPaymentInfo(UserPayment userPayment) {
+		this.userPayment.add(userPayment);
+		userPayment.setUser(this);
+	}
 	
 	public Date getUpdatedAt() {
 		return updatedAt;
@@ -150,6 +176,9 @@ public class User {
 	}
 	
 	
-	
+//	public void removeUserPhoneInfo(UserPhone userPhone) {
+//	userPhone.getUser().remove(this);
+//	this.userPhone.remove(userPhone);
+//}
 
 }
