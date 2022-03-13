@@ -13,6 +13,9 @@
 <p>
   This repository comprises a <strong>RESTful Web service</strong> implemented in Java using the Spring Boot framework and exploit several concepts learned in class. The proposed project is a <strong>E-Commerce</strong> system that provide features such as:
 </p>
+<br/>
+
+<h2>🏗 <strong>Features List & Description</strong></h2>
 <ul>
     <li>Host and consume images from AWS S3</li>
     <li>Gmail SMTP service</li>
@@ -22,10 +25,6 @@
     <li>Track cart</li>
     <li>Payment</li>
 </ul>
-<br/>
-
-<h2>🏗 <strong>Features List & Description</strong></h2>
-
 <br/>
 
 <h2>👥 <strong>Contributors</strong></h2>
