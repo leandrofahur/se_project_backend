@@ -53,34 +53,34 @@ public class UserPaymentController {
 		}
 	}
 	
-	@PostMapping("/userPayments")
-	public ResponseEntity<UserPayment> createUserPayment(@RequestBody UserPayment userPayment){
-		try {
-			UserPayment _userPayment 
-			= userPaymentRepository.save(new UserPayment(userPayment.getCardNumber(), userPayment.getExpirationDate(), userPayment.getCvc()));
-			return new ResponseEntity<>(_userPayment, HttpStatus.CREATED);
-			
-		}catch (Exception e) {
-			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-	}
-	
-	@PutMapping("/userPayments/{id}")
-	public ResponseEntity<UserPayment> updateUserPayment(@PathVariable("id") long id, @RequestBody UserPayment userPayment){
-		Optional<UserPayment> userPaymentData = userPaymentRepository.findById(id);
-		
-		if(userPaymentData.isPresent()) {
-			UserPayment _userPayment = userPaymentData.get();
-			_userPayment.setCardNumber(userPayment.getCardNumber());
-			_userPayment.setExpirationDate(userPayment.getExpirationDate());
-			_userPayment.setCvc(userPayment.getCvc());
-			_userPayment.setUpdatedAt(new Date());
-			
-			return new ResponseEntity<>(userPaymentRepository.save(_userPayment), HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-	}
+//	@PostMapping("/userPayments")
+//	public ResponseEntity<UserPayment> createUserPayment(@RequestBody UserPayment userPayment){
+//		try {
+//			UserPayment _userPayment 
+//			= userPaymentRepository.save(new UserPayment(userPayment.getCardNumber(), userPayment.getExpirationDate(), userPayment.getCvc()));
+//			return new ResponseEntity<>(_userPayment, HttpStatus.CREATED);
+//			
+//		}catch (Exception e) {
+//			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+//		}
+//	}
+//	
+//	@PutMapping("/userPayments/{id}")
+//	public ResponseEntity<UserPayment> updateUserPayment(@PathVariable("id") long id, @RequestBody UserPayment userPayment){
+//		Optional<UserPayment> userPaymentData = userPaymentRepository.findById(id);
+//		
+//		if(userPaymentData.isPresent()) {
+//			UserPayment _userPayment = userPaymentData.get();
+//			_userPayment.setCardNumber(userPayment.getCardNumber());
+//			_userPayment.setExpirationDate(userPayment.getExpirationDate());
+//			_userPayment.setCvc(userPayment.getCvc());
+//			_userPayment.setUpdatedAt(new Date());
+//			
+//			return new ResponseEntity<>(userPaymentRepository.save(_userPayment), HttpStatus.OK);
+//		} else {
+//			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//		}
+//	}
 	
 	@DeleteMapping("/userPayments/{id}")
 	public ResponseEntity<HttpStatus> deleteUserPaymentById(@PathVariable("id") long id) {

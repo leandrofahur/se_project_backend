@@ -53,38 +53,38 @@ public class UserAddressController {
 		}
 	}
 	
-	@PostMapping("/userAddresses")
-	public ResponseEntity<UserAddress> createUserAddress(@RequestBody UserAddress userAddress){
-		
-		try {
-			UserAddress _userAddress 
-			= userAddressRepository.save(new UserAddress(userAddress.getAddressLine1(), userAddress.getAddressLine2(),
-					userAddress.getCity(), userAddress.getProvince(), userAddress.getCountry(), userAddress.getPostalCode()));
-			return new ResponseEntity<>(_userAddress, HttpStatus.CREATED);
-		}catch (Exception e) {
-			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-	}
-	
-	@PutMapping("/userAddresses/{id}")
-	public ResponseEntity<UserAddress> updateUserAddress(@PathVariable("id") long id, @RequestBody UserAddress userAddress){
-		Optional<UserAddress> userAddressData = userAddressRepository.findById(id);
-		
-		if(userAddressData.isPresent()) {
-			UserAddress _userAddress = userAddressData.get();
-			_userAddress.setAddressLine1(userAddress.getAddressLine1());
-			_userAddress.setAddressLine2(userAddress.getAddressLine2());
-			_userAddress.setCity(userAddress.getCity());
-			_userAddress.setProvince(userAddress.getProvince());
-			_userAddress.setCountry(userAddress.getCountry());
-			_userAddress.setPostalCode(userAddress.getPostalCode());
-			_userAddress.setUpdatedAt(new Date());
-			
-			return new ResponseEntity<>(userAddressRepository.save(_userAddress), HttpStatus.OK);
-		}else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-	}
+//	@PostMapping("/userAddresses")
+//	public ResponseEntity<UserAddress> createUserAddress(@RequestBody UserAddress userAddress){
+//		
+//		try {
+//			UserAddress _userAddress 
+//			= userAddressRepository.save(new UserAddress(userAddress.getAddressLine1(), userAddress.getAddressLine2(),
+//					userAddress.getCity(), userAddress.getProvince(), userAddress.getCountry(), userAddress.getPostalCode()));
+//			return new ResponseEntity<>(_userAddress, HttpStatus.CREATED);
+//		}catch (Exception e) {
+//			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+//		}
+//	}
+//	
+//	@PutMapping("/userAddresses/{id}")
+//	public ResponseEntity<UserAddress> updateUserAddress(@PathVariable("id") long id, @RequestBody UserAddress userAddress){
+//		Optional<UserAddress> userAddressData = userAddressRepository.findById(id);
+//		
+//		if(userAddressData.isPresent()) {
+//			UserAddress _userAddress = userAddressData.get();
+//			_userAddress.setAddressLine1(userAddress.getAddressLine1());
+//			_userAddress.setAddressLine2(userAddress.getAddressLine2());
+//			_userAddress.setCity(userAddress.getCity());
+//			_userAddress.setProvince(userAddress.getProvince());
+//			_userAddress.setCountry(userAddress.getCountry());
+//			_userAddress.setPostalCode(userAddress.getPostalCode());
+//			_userAddress.setUpdatedAt(new Date());
+//			
+//			return new ResponseEntity<>(userAddressRepository.save(_userAddress), HttpStatus.OK);
+//		}else {
+//			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//		}
+//	}
 	
 	@DeleteMapping("/userAddresses/{id}")
 	public ResponseEntity<HttpStatus> deleteUserAddressById(@PathVariable("id") long id) {
