@@ -81,20 +81,7 @@ public class G2ScaredToCompileApplication {
 			for(int i = 0; i < users.length; i++) {
 				userRepository.save(users[i]);
 			}
-			
-//			for(int i = 0; i < userPhones.length; i++) {
-//				userPhoneRepository.save(userPhones[i]);
-//			}
-//			
-//			for(int i = 0; i < userAddresses.length; i++) {
-//				userAddressRepository.save(userAddresses[i]);
-//			}
-//			
-//			for(int i = 0; i < userPayments.length; i++) {
-//				userPaymentRepository.save(userPayments[i]);
-//			}
-	
-			
+		
 			userRepository.findAll().forEach(System.out::println);
 			userPhoneRepository.findAll().forEach(System.out::println);
 			userAddressRepository.findAll().forEach(System.out::println);
