@@ -14,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -63,7 +62,8 @@ public class Product {
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)	
 	private Set<Inventory> inventories = new HashSet<>();
 	
-	// TODO: Add inventory_id | discount_id | image_id and their proper relationships.
+//	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)	
+//	private Set<Discount> discounts = new HashSet<>();
 	
 	public Product() {
 		super();
@@ -149,4 +149,17 @@ public class Product {
 		this.inventories.add(inventory);
 		inventory.setProduct(this);
 	}
+
+//	public Set<Discount> getDiscounts() {
+//		return discounts;
+//	}
+//
+//	public void setDiscounts(Set<Discount> discounts) {
+//		this.discounts = discounts;
+//	}
+	
+//	public void addDiscount(Discount discount) {
+//		this.discounts.add(discount);
+//		discount.setProduct(this);
+//	}	
 }

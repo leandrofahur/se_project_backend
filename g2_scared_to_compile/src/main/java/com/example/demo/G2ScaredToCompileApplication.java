@@ -11,10 +11,12 @@ import org.springframework.context.annotation.Bean;
 
 import com.example.demo.models.Cart;
 import com.example.demo.models.Category;
+import com.example.demo.models.Discount;
 import com.example.demo.models.Inventory;
 import com.example.demo.models.Product;
 import com.example.demo.repositories.CartRepository;
 import com.example.demo.repositories.CategoryRepository;
+import com.example.demo.repositories.DiscountRepository;
 import com.example.demo.repositories.InventoryRepository;
 import com.example.demo.repositories.ProductRepository;
 import com.example.demo.models.Session;
@@ -29,7 +31,7 @@ public class G2ScaredToCompileApplication {
 	}
 	
 	@Bean
-	ApplicationRunner init(ProductRepository productRepository, CategoryRepository categoryRepository, InventoryRepository inventoryRepository, SessionRepository sessionRepository, CartRepository cartRepository) {
+	ApplicationRunner init(ProductRepository productRepository, CategoryRepository categoryRepository, InventoryRepository inventoryRepository, SessionRepository sessionRepository, CartRepository cartRepository, DiscountRepository discountRepository) {
 		return args -> {			
 			
 			
@@ -51,12 +53,22 @@ public class G2ScaredToCompileApplication {
 				};
 			
 			products[0].addInventory(inventories[0]);
+			//products[0].addInventory(inventories[1]);
 			products[1].addInventory(inventories[1]);
 			products[2].addInventory(inventories[2]);
 			
 			categories[0].addProduct(products[0]);
 			categories[0].addProduct(products[1]);
 			categories[1].addProduct(products[1]);				
+			
+			Discount [] discounts = {
+				new Discount("Discount 01", "Description1", 25, true),
+				new Discount("Discount 02", "Description2", 25, true),
+				new Discount("Discount 03", "Description3", 25, true),
+				new Discount("Discount 04", "Description4", 25, true),
+				new Discount("Discount 05", "Description5", 25, false),
+				new Discount("Discount 06", "Description6", 25, false)
+			};
 			
 			sessionRepository.save(new Session(10.0));
 			sessionRepository.save(new Session(50.0));
@@ -78,6 +90,10 @@ public class G2ScaredToCompileApplication {
 			
 			for (int i = 0; i < inventories.length; i++) {
 				inventoryRepository.save(inventories[i]);
+			}
+			
+			for (int i =0;i<discounts.length; i++) {	
+				discountRepository.save(discounts[i]);
 			}
 			
 			for (int i = 0; i < products.length; i++) {
