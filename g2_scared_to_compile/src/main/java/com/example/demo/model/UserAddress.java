@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class UserAddress {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USERSADDRESSES_SEQ_GENERATOR")
 	private long id;
 	
 	@Column(name = "addressLine1")
