@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c38453f5-c35f-493b-aad1-f5e554dc2779",
+		"_postman_id": "c3598362-2511-439f-9aa9-74734b2208a4",
 		"name": "SE_Endpoints_Backend",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -9,7 +9,7 @@
 			"name": "User",
 			"item": [
 				{
-					"name": "http://localhost:8080/api/users",
+					"name": "fetch all users",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -29,7 +29,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api/users/1",
+					"name": "fetch users by id",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -50,7 +50,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api/users",
+					"name": "create a new user",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -79,7 +79,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api/users/4",
+					"name": "update user",
 					"request": {
 						"method": "PUT",
 						"header": [],
@@ -109,7 +109,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api/users/4",
+					"name": "delete user by id",
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -139,7 +139,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api/users",
+					"name": "delete all users",
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -173,7 +173,7 @@
 			"name": "UserPhone",
 			"item": [
 				{
-					"name": "http://localhost:8080/api/userPhones",
+					"name": "fetch all userphones",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -193,7 +193,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api/userPhones/2",
+					"name": "fetch userphone by id",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -226,7 +226,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api/userPhones/2",
+					"name": "delete userphone by id",
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -256,7 +256,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api/userPhones",
+					"name": "delete all userphones",
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -290,7 +290,7 @@
 			"name": "UserAddress",
 			"item": [
 				{
-					"name": "http://localhost:8080/api/userAddresses",
+					"name": "fetch all userAddresses",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -310,7 +310,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api/userAddresses/3",
+					"name": "fetch useraddress by id",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -331,7 +331,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api/userAddresses/1",
+					"name": "delete useraddress by id",
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -352,7 +352,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api/userAddresses",
+					"name": "delete all useraddresses",
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -377,7 +377,7 @@
 			"name": "UserPayment",
 			"item": [
 				{
-					"name": "http://localhost:8080/api/userPayments",
+					"name": "fetch all userpayments",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -397,7 +397,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api/userPayments/1",
+					"name": "fetch userpayment by id",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -418,7 +418,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api/userPayments/2",
+					"name": "delete usepayment by id",
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -439,7 +439,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api/userPayments",
+					"name": "delete all userpayments",
 					"request": {
 						"method": "DELETE",
 						"header": [],
