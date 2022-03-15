@@ -1,10 +1,7 @@
-package com.example.demo.model;
+package com.example.demo.models;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,22 +9,30 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "userPhones")
-public class UserPhone {
+@Table(name = "userPayments")
+public class UserPayment {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USERPHONES_SEQ_GENERATOR")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USERPAYMENTS_SEQ_GENERATOR")
 	private long id;
 	
-	@Column(name="number")
-	private String number;
+	@Column(name = "cardNumber")
+	private String cardNumber;
+	
+	@Column(name = "expirationDate")
+	//@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date expirationDate;
+	
+	@Column(name = "cvc")
+	private String cvc;
 	
 	@Column(name="created_at")
 	private Date createdAt;
@@ -40,12 +45,15 @@ public class UserPhone {
 	@JsonIgnore
     private User user;
 	
-	public UserPhone() {}
+	public UserPayment() {}
 
-	
-	public UserPhone(String number) {
+
+	public UserPayment(String cardNumber, Date expirationDate, String cvc) {
 		super();
-		this.number = number;
+		this.cardNumber = cardNumber;
+		this.expirationDate = expirationDate;
+		this.cvc = cvc;
+		
 		this.createdAt = new Date();
 		this.updatedAt = new Date();
 	}
@@ -61,13 +69,33 @@ public class UserPhone {
 	}
 
 
-	public String getNumber() {
-		return number;
+	public String getCardNumber() {
+		return cardNumber;
 	}
 
 
-	public void setNumber(String number) {
-		this.number = number;
+	public void setCardNumber(String cardNumber) {
+		this.cardNumber = cardNumber;
+	}
+
+
+	public Date getExpirationDate() {
+		return expirationDate;
+	}
+
+
+	public void setExpirationDate(Date expirationDate) {
+		this.expirationDate = expirationDate;
+	}
+
+
+	public String getCvc() {
+		return cvc;
+	}
+
+
+	public void setCvc(String cvc) {
+		this.cvc = cvc;
 	}
 
 
@@ -89,8 +117,7 @@ public class UserPhone {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-
-
+	
 	public User getUser() {
 		return user;
 	}
@@ -99,14 +126,6 @@ public class UserPhone {
 	public void setUser(User user) {
 		this.user = user;
 	}
-
-
-
-	
-	
-	
-	
-	
 	
 	
 

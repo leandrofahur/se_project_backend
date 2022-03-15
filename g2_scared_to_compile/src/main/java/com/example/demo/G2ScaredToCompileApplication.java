@@ -8,14 +8,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import com.example.demo.model.User;
-import com.example.demo.model.UserAddress;
-import com.example.demo.model.UserPayment;
-import com.example.demo.model.UserPhone;
-import com.example.demo.repository.UserAddressRepository;
-import com.example.demo.repository.UserPaymentRepository;
-import com.example.demo.repository.UserPhoneRepository;
-import com.example.demo.repository.UserRepository;
+import com.example.demo.models.User;
+import com.example.demo.models.UserAddress;
+import com.example.demo.models.UserPayment;
+import com.example.demo.models.UserPhone;
+import com.example.demo.repositories.UserAddressRepository;
+import com.example.demo.repositories.UserPaymentRepository;
+import com.example.demo.repositories.UserPhoneRepository;
+import com.example.demo.repositories.UserRepository;
 
 @SpringBootApplication
 public class G2ScaredToCompileApplication {

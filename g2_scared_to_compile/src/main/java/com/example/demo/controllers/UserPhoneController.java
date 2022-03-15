@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.demo.controllers;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.model.UserPhone;
-import com.example.demo.repository.UserPhoneRepository;
+import com.example.demo.models.UserPhone;
+import com.example.demo.repositories.UserPhoneRepository;
 
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController

@@ -1,10 +1,10 @@
-package com.example.demo.repository;
+package com.example.demo.repositories;
 
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.example.demo.model.UserPhone;
+import com.example.demo.models.UserPhone;
 
 public interface UserPhoneRepository extends JpaRepository<UserPhone, Long> {
 	
