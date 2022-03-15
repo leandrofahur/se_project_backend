@@ -16,25 +16,55 @@ import com.example.demo.repositories.UserAddressRepository;
 import com.example.demo.repositories.UserPaymentRepository;
 import com.example.demo.repositories.UserPhoneRepository;
 import com.example.demo.repositories.UserRepository;
+import com.example.demo.models.Cart;
+import com.example.demo.models.Category;
+import com.example.demo.models.Inventory;
+import com.example.demo.models.Product;
+import com.example.demo.repositories.CartRepository;
+import com.example.demo.repositories.CategoryRepository;
+import com.example.demo.repositories.InventoryRepository;
+import com.example.demo.repositories.ProductRepository;
+import com.example.demo.models.Session;
+import com.example.demo.repositories.SessionRepository;
+
 
 @SpringBootApplication
 public class G2ScaredToCompileApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(G2ScaredToCompileApplication.class, args);
+		
 	}
 	
 	@Bean
-	ApplicationRunner init(UserRepository userRepository, UserPhoneRepository userPhoneRepository, UserAddressRepository userAddressRepository, UserPaymentRepository userPaymentRepository) {
-		return args->{
+	ApplicationRunner init(UserRepository userRepository, UserPhoneRepository userPhoneRepository, UserAddressRepository userAddressRepository, UserPaymentRepository userPaymentRepository, ProductRepository productRepository, CategoryRepository categoryRepository, InventoryRepository inventoryRepository, SessionRepository sessionRepository, CartRepository cartRepository) {
+		return args -> {			
+			productRepository.save(new Product("Product 01", "This is the product 01", 25.0f, "PRO-MED-WHI-COT"));
+			productRepository.save(new Product("Product 02", "This is the product 02", 25.0f, "PRO-LAG-BLA-COT"));
+			productRepository.save(new Product("Product 03", "This is the product 03", 25.0f, "PRO-SMA-GRA-COT"));
 			
-//			userRepository.save(new User("Han-Do", "Lee", "HandsomeGuy", "12345L", true, "handolee@somewhere.com"));
-//			userRepository.save(new User("Mariana", "Lima", "BeautifulGirl", "67890M", true, "mariana@somewhere.com"));
-//			userRepository.save(new User("Sebastian", "Mendez", "CharmingGuy", "54321S", true, "sebastian@somewhere.com"));
-//			userRepository.findAll().forEach(System.out::println);
-
+			categoryRepository.save(new Category("Category 01", "This is the category 01"));
+			categoryRepository.save(new Category("Category 02", "This is the category 02"));
 			
-			User[] users  = {
+			inventoryRepository.save(new Inventory(1));
+			inventoryRepository.save(new Inventory(10));
+			inventoryRepository.save(new Inventory(100));
+			
+			sessionRepository.save(new Session(10.0));
+			sessionRepository.save(new Session(50.0));
+			sessionRepository.save(new Session(100.0));
+			sessionRepository.save(new Session(150.0));
+			
+			sessionRepository.save(new Session(10.0));
+			sessionRepository.save(new Session(50.0));
+			sessionRepository.save(new Session(100.0));
+			sessionRepository.save(new Session(150.0));
+			
+			cartRepository.save(new Cart(1));
+			cartRepository.save(new Cart(2));
+			cartRepository.save(new Cart(3));
+      
+      User[] users  = {
 					new User("Han-Do", "Lee", "HandsomeGuy", "12345L", true, "handolee@somewhere.com"),
 					new User("Mariana", "Lima", "BeautifulGirl", "67890M", true, "mariana@somewhere.com"),
 					new User("Sebastian", "Mendez", "CharmingGuy", "54321S", true, "sebastian@somewhere.com")
@@ -86,10 +116,6 @@ public class G2ScaredToCompileApplication {
 			userPhoneRepository.findAll().forEach(System.out::println);
 			userAddressRepository.findAll().forEach(System.out::println);
 			userPaymentRepository.findAll().forEach(System.out::println);
-			
-			
-		};//ending return 
-		
+		};
 	}
-
 }
