@@ -1,13 +1,23 @@
 package com.example.demo.models;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="products")
@@ -36,7 +46,24 @@ public class Product {
 	@Column(name="updated_at")
 	private Date updatedAt;
 	
-	// TODO: Add category_id | inventory_id | discount_id | image_id and their proper relationships.
+	//@JsonIgnore 
+	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE })
+	@JoinTable(name = "products_categories", 
+		joinColumns = {
+			@JoinColumn(name = "products_id", referencedColumnName = "id") 
+		}, 
+		inverseJoinColumns = {
+			@JoinColumn(name = "categories_id", referencedColumnName = "id") 
+		}
+	)
+	
+	private Set<Category> categories = new HashSet<>();
+	
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)	
+	private Set<Inventory> inventories = new HashSet<>();
+	
+//	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)	
+//	private Set<Discount> discounts = new HashSet<>();
 	
 	public Product() {
 		super();
@@ -101,4 +128,38 @@ public class Product {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+	
+	public Set<Category> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(Set<Category> categories) {
+		this.categories = categories;
+	}
+	
+	public Set<Inventory> getInventories() {
+		return inventories;
+	}
+
+	public void setInventories(Set<Inventory> inventories) {
+		this.inventories = inventories;
+	}
+	
+	public void addInventory(Inventory inventory) {
+		this.inventories.add(inventory);
+		inventory.setProduct(this);
+	}
+
+//	public Set<Discount> getDiscounts() {
+//		return discounts;
+//	}
+//
+//	public void setDiscounts(Set<Discount> discounts) {
+//		this.discounts = discounts;
+//	}
+	
+//	public void addDiscount(Discount discount) {
+//		this.discounts.add(discount);
+//		discount.setProduct(this);
+//	}	
 }

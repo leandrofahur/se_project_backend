@@ -2,12 +2,18 @@ package com.example.demo.models;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="inventories")
@@ -24,6 +30,11 @@ public class Inventory {
 	
 	@Column(name="updated_at")
 	private Date updatedAt;
+	
+	@ManyToOne(fetch = FetchType.LAZY, optional=false,cascade=CascadeType.ALL)
+	@JoinColumn(name = "product_id", nullable = false)
+	@JsonIgnore
+	private Product product;
 	
 	public Inventory() {
 		super();
@@ -59,5 +70,13 @@ public class Inventory {
 
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
 	}	
 }

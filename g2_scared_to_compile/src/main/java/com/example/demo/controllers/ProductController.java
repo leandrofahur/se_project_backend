@@ -58,7 +58,6 @@ public class ProductController {
 		}	
 	}
 	
-	
 	// ----------	
 	@PostMapping("/products")
 	public ResponseEntity<Product> createProduct(@RequestBody Product newProduct) {
@@ -70,7 +69,7 @@ public class ProductController {
 		}		
 	}
 	
-	
+	// TODO: Route to add category inside the product
 	
 	// ----------
 	@PutMapping("/products/{id}")
@@ -91,7 +90,7 @@ public class ProductController {
 		}				
 	}
 	
-	
+	// TODO: Route to update category inside the product
 	
 	// ----------
 	@DeleteMapping("/products")
@@ -115,4 +114,7 @@ public class ProductController {
 		}
 						
 	}
+	
+	// TODO: Delete category inside the product
+	
 }

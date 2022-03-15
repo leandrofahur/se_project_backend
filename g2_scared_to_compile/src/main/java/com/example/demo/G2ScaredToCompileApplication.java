@@ -1,7 +1,11 @@
 package com.example.demo;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.Set;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
@@ -18,10 +22,12 @@ import com.example.demo.repositories.UserPhoneRepository;
 import com.example.demo.repositories.UserRepository;
 import com.example.demo.models.Cart;
 import com.example.demo.models.Category;
+import com.example.demo.models.Discount;
 import com.example.demo.models.Inventory;
 import com.example.demo.models.Product;
 import com.example.demo.repositories.CartRepository;
 import com.example.demo.repositories.CategoryRepository;
+import com.example.demo.repositories.DiscountRepository;
 import com.example.demo.repositories.InventoryRepository;
 import com.example.demo.repositories.ProductRepository;
 import com.example.demo.models.Session;
@@ -37,18 +43,44 @@ public class G2ScaredToCompileApplication {
 	}
 	
 	@Bean
-	ApplicationRunner init(UserRepository userRepository, UserPhoneRepository userPhoneRepository, UserAddressRepository userAddressRepository, UserPaymentRepository userPaymentRepository, ProductRepository productRepository, CategoryRepository categoryRepository, InventoryRepository inventoryRepository, SessionRepository sessionRepository, CartRepository cartRepository) {
+	ApplicationRunner init(UserRepository userRepository, UserPhoneRepository userPhoneRepository, UserAddressRepository userAddressRepository, UserPaymentRepository userPaymentRepository, ProductRepository productRepository, CategoryRepository categoryRepository, InventoryRepository inventoryRepository, SessionRepository sessionRepository, CartRepository cartRepository, DiscountRepository discountRepository) {
+    
 		return args -> {			
-			productRepository.save(new Product("Product 01", "This is the product 01", 25.0f, "PRO-MED-WHI-COT"));
-			productRepository.save(new Product("Product 02", "This is the product 02", 25.0f, "PRO-LAG-BLA-COT"));
-			productRepository.save(new Product("Product 03", "This is the product 03", 25.0f, "PRO-SMA-GRA-COT"));
 			
-			categoryRepository.save(new Category("Category 01", "This is the category 01"));
-			categoryRepository.save(new Category("Category 02", "This is the category 02"));
+			Product[] products = {
+				new Product("Product 01", "This is the product 01", 25.0f, "PRO-MED-WHI-COT"),
+				new Product("Product 02", "This is the product 02", 15.0f, "PRO-LAG-BLA-COT"),
+				new Product("Product 03", "This is the product 03", 5.0f, "PRO-SMA-GRA-COT")
+			};
 			
-			inventoryRepository.save(new Inventory(1));
-			inventoryRepository.save(new Inventory(10));
-			inventoryRepository.save(new Inventory(100));
+			Category[] categories = {
+				new Category("Category 01", "This is the category 01"),
+				new Category("Category 02", "This is the category 02")
+			};
+			
+			Inventory[] inventories = {
+					new Inventory(1),
+					new Inventory(10),
+					new Inventory(100)
+				};
+			
+			products[0].addInventory(inventories[0]);
+			//products[0].addInventory(inventories[1]);
+			products[1].addInventory(inventories[1]);
+			products[2].addInventory(inventories[2]);
+			
+			categories[0].addProduct(products[0]);
+			categories[0].addProduct(products[1]);
+			categories[1].addProduct(products[1]);				
+			
+			Discount [] discounts = {
+				new Discount("Discount 01", "Description1", 25, true),
+				new Discount("Discount 02", "Description2", 25, true),
+				new Discount("Discount 03", "Description3", 25, true),
+				new Discount("Discount 04", "Description4", 25, true),
+				new Discount("Discount 05", "Description5", 25, false),
+				new Discount("Discount 06", "Description6", 25, false)
+			};
 			
 			sessionRepository.save(new Session(10.0));
 			sessionRepository.save(new Session(50.0));
@@ -63,6 +95,23 @@ public class G2ScaredToCompileApplication {
 			cartRepository.save(new Cart(1));
 			cartRepository.save(new Cart(2));
 			cartRepository.save(new Cart(3));
+
+			
+			for (int i = 0; i < categories.length; i++) {
+				categoryRepository.save(categories[i]);
+			}
+			
+			for (int i = 0; i < inventories.length; i++) {
+				inventoryRepository.save(inventories[i]);
+			}
+			
+			for (int i =0;i<discounts.length; i++) {	
+				discountRepository.save(discounts[i]);
+			}
+			
+			for (int i = 0; i < products.length; i++) {
+				productRepository.save(products[i]);
+			}
       
       User[] users  = {
 					new User("Han-Do", "Lee", "HandsomeGuy", "12345L", true, "handolee@somewhere.com"),
@@ -105,9 +154,7 @@ public class G2ScaredToCompileApplication {
 			users[0].addUserPaymentInfo(userPayments[0]);
 			users[1].addUserPaymentInfo(userPayments[1]);
 			users[2].addUserPaymentInfo(userPayments[2]);
-			
-			
-			
+				
 			for(int i = 0; i < users.length; i++) {
 				userRepository.save(users[i]);
 			}
