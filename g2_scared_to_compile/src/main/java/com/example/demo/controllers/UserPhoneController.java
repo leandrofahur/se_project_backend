@@ -54,31 +54,31 @@ public class UserPhoneController {
 		
 	}
 	
-//	@PostMapping("/userPhones")
-//	public ResponseEntity<UserPhone> createUserPhone(@RequestBody UserPhone userPhone){
-//		try {
-//			UserPhone _userPhone = userPhoneRepository.save(new UserPhone(userPhone.getNumber()));
-//			return new ResponseEntity<>(_userPhone, HttpStatus.CREATED);
-//			
-//		}catch (Exception e) {
-//			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-//			
-//		}
-//	}
-//	
-//	@PutMapping("/userPhones/{id}")
-//	public ResponseEntity<UserPhone> updateUserPhone(@PathVariable("id") long id, @RequestBody UserPhone userPhone){
-//		Optional<UserPhone> userPhoneData = userPhoneRepository.findById(id);
-//		
-//		if(userPhoneData.isPresent()) {
-//			UserPhone _userPhone = userPhoneData.get();
-//			_userPhone.setNumber(userPhone.getNumber());
-//			_userPhone.setUpdatedAt(new Date());
-//			return new ResponseEntity<>(userPhoneRepository.save(_userPhone), HttpStatus.OK);
-//		} else {
-//			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//		}
-//	}
+	@PostMapping("/userPhones")
+	public ResponseEntity<UserPhone> createUserPhone(@RequestBody UserPhone userPhone){
+		try {
+			UserPhone _userPhone = userPhoneRepository.save(new UserPhone(userPhone.getNumber()));
+			return new ResponseEntity<>(_userPhone, HttpStatus.CREATED);
+			
+		}catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+			
+		}
+	}
+	
+	@PutMapping("/userPhones/{id}")
+	public ResponseEntity<UserPhone> updateUserPhone(@PathVariable("id") long id, @RequestBody UserPhone userPhone){
+		Optional<UserPhone> userPhoneData = userPhoneRepository.findById(id);
+		
+		if(userPhoneData.isPresent()) {
+			UserPhone _userPhone = userPhoneData.get();
+			_userPhone.setNumber(userPhone.getNumber());
+			_userPhone.setUpdatedAt(new Date());
+			return new ResponseEntity<>(userPhoneRepository.save(_userPhone), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
 	
 	@DeleteMapping("/userPhones/{id}")
 	public ResponseEntity<HttpStatus> deleteUserPhoneById(@PathVariable("id") long id) {

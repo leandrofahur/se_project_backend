@@ -8,6 +8,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,8 +19,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.models.User;
 import com.example.demo.models.UserAddress;
 import com.example.demo.repositories.UserAddressRepository;
+import com.example.demo.repositories.UserRepository;
 
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
@@ -28,6 +31,9 @@ public class UserAddressController {
 	
 	@Autowired
 	UserAddressRepository userAddressRepository;
+	
+	@Autowired
+	UserRepository userRepository;
 	
 	@GetMapping("/userAddresses/{id}")
 	public ResponseEntity<UserAddress> getUserAddressById(@PathVariable("id") long id){
@@ -53,38 +59,66 @@ public class UserAddressController {
 		}
 	}
 	
-//	@PostMapping("/userAddresses")
-//	public ResponseEntity<UserAddress> createUserAddress(@RequestBody UserAddress userAddress){
-//		
-//		try {
-//			UserAddress _userAddress 
-//			= userAddressRepository.save(new UserAddress(userAddress.getAddressLine1(), userAddress.getAddressLine2(),
-//					userAddress.getCity(), userAddress.getProvince(), userAddress.getCountry(), userAddress.getPostalCode()));
-//			return new ResponseEntity<>(_userAddress, HttpStatus.CREATED);
-//		}catch (Exception e) {
-//			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-//		}
-//	}
-//	
-//	@PutMapping("/userAddresses/{id}")
-//	public ResponseEntity<UserAddress> updateUserAddress(@PathVariable("id") long id, @RequestBody UserAddress userAddress){
-//		Optional<UserAddress> userAddressData = userAddressRepository.findById(id);
-//		
-//		if(userAddressData.isPresent()) {
-//			UserAddress _userAddress = userAddressData.get();
-//			_userAddress.setAddressLine1(userAddress.getAddressLine1());
-//			_userAddress.setAddressLine2(userAddress.getAddressLine2());
-//			_userAddress.setCity(userAddress.getCity());
-//			_userAddress.setProvince(userAddress.getProvince());
-//			_userAddress.setCountry(userAddress.getCountry());
-//			_userAddress.setPostalCode(userAddress.getPostalCode());
-//			_userAddress.setUpdatedAt(new Date());
-//			
-//			return new ResponseEntity<>(userAddressRepository.save(_userAddress), HttpStatus.OK);
-//		}else {
-//			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//		}
-//	}
+	@PostMapping("/userAddresses/{user_id}")
+	public ResponseEntity<UserAddress> createUserAddress(@RequestBody UserAddress userAddress, @PathVariable("user_id") long userId){
+		
+		Optional<User> user = userRepository.findById(userId);
+		
+		if(user.isPresent()) {
+			
+			User exsitUser = user.get();
+			
+//			UserAddress _userAddress = new UserAddress(
+//					userAddress.getAddressLine1(), userAddress.getAddressLine2(),
+//					userAddress.getCity(), userAddress.getProvince(), 
+//					userAddress.getCountry(), userAddress.getPostalCode());
+			userAddress.setCreatedAt(new Date());
+			exsitUser.addUserAddressInfo(userAddress);
+			
+			userRepository.save(exsitUser);
+			
+			return new ResponseEntity<>(userAddress, HttpStatus.CREATED);
+		}
+		
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		
+	}
+	
+	@PutMapping("/userAddresses/{id}")
+	public ResponseEntity<UserAddress> updateUserAddress(@PathVariable("id") long id, @RequestBody UserAddress userAddress) {
+		
+		if(userAddress.getAddressLine1() == null
+				|| userAddress.getCity() == null
+				|| userAddress.getProvince() == null 
+				|| userAddress.getCountry() == null 
+				|| userAddress.getPostalCode() == null) {
+			
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST); //사용자 추가 메모 쓰기 null 밸류 없이 넘겨라
+			
+		} else {
+			
+		Optional<UserAddress> userAddressData = userAddressRepository.findById(id);
+		
+		if(userAddressData.isPresent()) {
+			UserAddress _userAddress = userAddressData.get();
+			_userAddress.setAddressLine1(userAddress.getAddressLine1());
+			_userAddress.setAddressLine2(userAddress.getAddressLine2());
+			_userAddress.setCity(userAddress.getCity());
+			_userAddress.setProvince(userAddress.getProvince());
+			_userAddress.setCountry(userAddress.getCountry());
+			_userAddress.setPostalCode(userAddress.getPostalCode());
+			_userAddress.setUpdatedAt(new Date());
+			
+			
+			
+			return new ResponseEntity<>(userAddressRepository.save(_userAddress), HttpStatus.OK);
+		}else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		
+		}
+		
+	}
 	
 	@DeleteMapping("/userAddresses/{id}")
 	public ResponseEntity<HttpStatus> deleteUserAddressById(@PathVariable("id") long id) {

@@ -69,7 +69,7 @@ public class User {
 		this.email = email;
 		
 		this.createdAt = new Date();
-		this.updatedAt = new Date();
+		//this.updatedAt = new Date();
 	}
 	
 	public long getId() {
