@@ -47,7 +47,7 @@ public class UserPhone {
 		super();
 		this.number = number;
 		this.createdAt = new Date();
-		this.updatedAt = new Date();
+		//this.updatedAt = new Date();
 	}
 
 

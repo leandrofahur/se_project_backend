@@ -66,16 +66,16 @@ public class UserAddressController {
 		
 		if(user.isPresent()) {
 			
-			User exsitUser = user.get();
+			User existtUser = user.get();
 			
 //			UserAddress _userAddress = new UserAddress(
 //					userAddress.getAddressLine1(), userAddress.getAddressLine2(),
 //					userAddress.getCity(), userAddress.getProvince(), 
 //					userAddress.getCountry(), userAddress.getPostalCode());
 			userAddress.setCreatedAt(new Date());
-			exsitUser.addUserAddressInfo(userAddress);
+			existtUser.addUserAddressInfo(userAddress);
 			
-			userRepository.save(exsitUser);
+			userRepository.save(existtUser);
 			
 			return new ResponseEntity<>(userAddress, HttpStatus.CREATED);
 		}
@@ -98,26 +98,22 @@ public class UserAddressController {
 		} else {
 			
 		Optional<UserAddress> userAddressData = userAddressRepository.findById(id);
-		
-		if(userAddressData.isPresent()) {
-			UserAddress _userAddress = userAddressData.get();
-			_userAddress.setAddressLine1(userAddress.getAddressLine1());
-			_userAddress.setAddressLine2(userAddress.getAddressLine2());
-			_userAddress.setCity(userAddress.getCity());
-			_userAddress.setProvince(userAddress.getProvince());
-			_userAddress.setCountry(userAddress.getCountry());
-			_userAddress.setPostalCode(userAddress.getPostalCode());
-			_userAddress.setUpdatedAt(new Date());
 			
-			
-			
-			return new ResponseEntity<>(userAddressRepository.save(_userAddress), HttpStatus.OK);
-		}else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			if(userAddressData.isPresent()) {
+				UserAddress _userAddress = userAddressData.get();
+				_userAddress.setAddressLine1(userAddress.getAddressLine1());
+				_userAddress.setAddressLine2(userAddress.getAddressLine2());
+				_userAddress.setCity(userAddress.getCity());
+				_userAddress.setProvince(userAddress.getProvince());
+				_userAddress.setCountry(userAddress.getCountry());
+				_userAddress.setPostalCode(userAddress.getPostalCode());
+				_userAddress.setUpdatedAt(new Date());
+				
+				return new ResponseEntity<>(userAddressRepository.save(_userAddress), HttpStatus.OK);
+			}else {
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
 		}
-		
-		}
-		
 	}
 	
 	@DeleteMapping("/userAddresses/{id}")

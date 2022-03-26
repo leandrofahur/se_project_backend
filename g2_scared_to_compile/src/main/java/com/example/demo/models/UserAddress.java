@@ -64,7 +64,7 @@ public class UserAddress {
 		this.postalCode = postalCode;
 		
 		this.createdAt = new Date();
-		this.updatedAt = new Date();
+		//this.updatedAt = new Date();
 	}
 
 	public long getId() {

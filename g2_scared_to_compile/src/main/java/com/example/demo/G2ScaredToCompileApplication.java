@@ -60,8 +60,8 @@ public class G2ScaredToCompileApplication {
 			
 			UserPayment[] userPayments = {
 					new UserPayment("1234 5678 8765 4321", date1, "123"),
-					new UserPayment("1234 5678 8765 4321", date2, "123"),
-					new UserPayment("1234 5678 8765 4321", date3, "123")
+					new UserPayment("2345 6778 9086 7463", date2, "789"),
+					new UserPayment("4624 6473 2645 6234", date3, "169")
 			};
 			
 			users[0].addUserPhoneInfo(userPhones[0]);
