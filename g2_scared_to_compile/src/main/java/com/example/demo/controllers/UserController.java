@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.models.User;
 import com.example.demo.repositories.UserRepository;
+import com.example.demo.response.MessageResponse;
 
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
@@ -50,8 +51,21 @@ public class UserController {
 	}
 	
 	@GetMapping("/users/{id}")
-	public ResponseEntity<User> getUserById(@PathVariable("id") long id){
+	public ResponseEntity<?> getUserById(@PathVariable("id") long id){
 		Optional<User> userData = userRepository.findById(id);
+		
+		if(userData.isPresent()) {
+			return new ResponseEntity<>(userData.get(),HttpStatus.OK);
+			
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		
+	}
+	
+	@GetMapping("/users/{email}")
+	public ResponseEntity<User> getUserById(@PathVariable("email") String email){
+		Optional<User> userData = userRepository.findByEmail(email);
 		
 		if(userData.isPresent()) {
 			return new ResponseEntity<>(userData.get(),HttpStatus.OK);
@@ -67,13 +81,20 @@ public class UserController {
 		
 		try {
 
-			User _user = userRepository.save(new User(user.getFirstName(), user.getLastName(),
-					user.getUserName(), user.getPassword(), user.getIsAdmin(), user.getEmail()));
+//			User _user = userRepository.save(new User(user.getFirstName(), user.getLastName(),
+//					user.getUserName(), user.getPassword(), user.getIsAdmin(), user.getEmail()));
+			
+			User _user = userRepository.save(new User(
+					user.getUserName(),user.getEmail(), user.getPassword()));
+			
+//			User _user = userRepository.save(new User(
+//					user.getUserName(),user.getEmail(), user.getPassword(), user.getPassword()));
+			
 			
 			return new ResponseEntity<>(_user,HttpStatus.CREATED);
 			
 		}catch (Exception e) {
-			return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	

@@ -14,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.lang.Nullable;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -22,9 +24,11 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USERS_SEQ_GENERATOR")
 	private long id;
 	
+	@Nullable
 	@Column(name = "firstName")
 	private String firstName;
 	
+	@Nullable
 	@Column(name = "lastName")
 	private String lastName;
 	
@@ -34,6 +38,7 @@ public class User {
 	@Column(name = "password")
 	private String password;
 	
+	@Nullable
 	@Column(name = "isAdmin")
 	private boolean isAdmin;
 	
@@ -67,6 +72,20 @@ public class User {
 		this.password = password;
 		this.isAdmin = is_admin;
 		this.email = email;
+		
+		this.createdAt = new Date();
+		//this.updatedAt = new Date();
+	}
+	
+	//public User(String userName, String email, String password, String confirmPassword) {
+	public User(String userName, String email, String password) {
+		super();
+	
+		this.userName = userName;
+		this.email = email;
+		this.password = password;
+		//setPassword(confirmPassword);
+		//this.password = confirmPassword;
 		
 		this.createdAt = new Date();
 		//this.updatedAt = new Date();
