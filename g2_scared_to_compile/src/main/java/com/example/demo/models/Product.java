@@ -46,6 +46,9 @@ public class Product {
 	@Column(name="updated_at")
 	private Date updatedAt;
 	
+	@Column(name="img_dir")
+	private String imgDir;
+	
 	//@JsonIgnore 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE })
 	@JoinTable(name = "products_categories", 
@@ -71,7 +74,7 @@ public class Product {
 	}
 
 	// TODO: Remember to re-generate with the new attributes on-hold: 
-	public Product(String name, String description, Float price, String sKU) {
+	public Product(String name, String description, Float price, String sKU, String imgDir) {
 		super();
 		this.name = name;
 		this.description = description;
@@ -79,10 +82,19 @@ public class Product {
 		sku = sKU;
 		this.createdAt = new Date();
 		this.updatedAt = new Date();
+		this.imgDir = imgDir;
 	}
 
 	public long getId() {
 		return id;
+	}
+
+	public String getImgDir() {
+		return imgDir;
+	}
+
+	public void setImgDir(String imgDir) {
+		this.imgDir = imgDir;
 	}
 
 	public void setId(long id) {

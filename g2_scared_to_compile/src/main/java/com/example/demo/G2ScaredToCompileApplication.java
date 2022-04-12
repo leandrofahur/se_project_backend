@@ -48,9 +48,9 @@ public class G2ScaredToCompileApplication {
 		return args -> {			
 			
 			Product[] products = {
-				new Product("Product 01", "This is the product 01", 25.0f, "PRO-MED-WHI-COT"),
-				new Product("Product 02", "This is the product 02", 15.0f, "PRO-LAG-BLA-COT"),
-				new Product("Product 03", "This is the product 03", 5.0f, "PRO-SMA-GRA-COT")
+				new Product("Product 01", "This is the product 01", 25.0f, "PRO-MED-WHI-COT", "product01.png"),
+				new Product("Product 02", "This is the product 02", 15.0f, "PRO-LAG-BLA-COT", "product02.png"),
+				new Product("Product 03", "This is the product 03", 5.0f, "PRO-SMA-GRA-COT", "product03.png")
 			};
 			
 			Category[] categories = {
