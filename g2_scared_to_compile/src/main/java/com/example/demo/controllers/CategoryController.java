@@ -26,6 +26,7 @@ import com.example.demo.repositories.CategoryRepository;
 @RestController
 @RequestMapping("/api")
 public class CategoryController {
+	
 	@Autowired
 	CategoryRepository categoryRepository;
 	
@@ -106,10 +107,6 @@ public class CategoryController {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);			
 		} catch (Exception ex) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-						
+		}					
 	}
-	
-	
-	
 }

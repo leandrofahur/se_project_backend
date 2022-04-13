@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c3598362-2511-439f-9aa9-74734b2208a4",
+		"_postman_id": "ea7073be-34cb-4c57-82a9-f98ead08e538",
 		"name": "SE_Endpoints_Backend",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -748,7 +748,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/products/3",
+							"raw": "http://localhost:8080/api/products/13",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -757,7 +757,7 @@
 							"path": [
 								"api",
 								"products",
-								"3"
+								"13"
 							]
 						}
 					},
@@ -769,7 +769,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/products/3",
+							"raw": "http://localhost:8080/api/products/19",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -778,7 +778,7 @@
 							"path": [
 								"api",
 								"products",
-								"3"
+								"19"
 							]
 						}
 					},
@@ -835,7 +835,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/categories/1",
+							"raw": "http://localhost:8080/api/categories/15",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -844,7 +844,7 @@
 							"path": [
 								"api",
 								"categories",
-								"1"
+								"15"
 							]
 						}
 					},
@@ -896,7 +896,7 @@
 							"raw": "{\n    \"name\":\"underwear\",\n    \"description\":\"all sizes\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/categories/1",
+							"raw": "http://localhost:8080/api/categories/27",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -905,7 +905,7 @@
 							"path": [
 								"api",
 								"categories",
-								"1"
+								"27"
 							]
 						}
 					},
@@ -1151,7 +1151,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/session/13",
+							"raw": "http://localhost:8080/api/session/7",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1160,7 +1160,7 @@
 							"path": [
 								"api",
 								"session",
-								"13"
+								"7"
 							]
 						}
 					},
@@ -1210,7 +1210,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/session/13",
+							"raw": "http://localhost:8080/api/session/7",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1219,7 +1219,28 @@
 							"path": [
 								"api",
 								"session",
-								"13"
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete session by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/session/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"session",
+								"7"
 							]
 						}
 					},
@@ -1240,27 +1261,6 @@
 							"path": [
 								"api",
 								"session"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "delete session by id",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/session/15",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"session",
-								"15"
 							]
 						}
 					},
@@ -1297,7 +1297,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/cart/18",
+							"raw": "http://localhost:8080/api/cart/11",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1306,7 +1306,7 @@
 							"path": [
 								"api",
 								"cart",
-								"18"
+								"11"
 							]
 						}
 					},
@@ -1356,7 +1356,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/cart/20",
+							"raw": "http://localhost:8080/api/cart/11",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1365,7 +1365,7 @@
 							"path": [
 								"api",
 								"cart",
-								"20"
+								"11"
 							]
 						}
 					},
@@ -1377,7 +1377,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/cart/20",
+							"raw": "http://localhost:8080/api/cart/11",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1386,7 +1386,7 @@
 							"path": [
 								"api",
 								"cart",
-								"20"
+								"11"
 							]
 						}
 					},
@@ -1512,6 +1512,77 @@
 								"api",
 								"discounts",
 								"21"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Email",
+			"item": [
+				{
+					"name": "Forgot password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"g2scaredtocompile@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/forgotpassword",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"forgotpassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset password",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"g2scaredtocompile@gmail.com\",\n    \"password\":\"12345\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/secretpath/resetpassword",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"secretpath",
+								"resetpassword"
 							]
 						}
 					},
