@@ -113,8 +113,8 @@ public class G2ScaredToCompileApplication {
 				productRepository.save(products[i]);
 			}
       
-      User[] users  = {
-					new User("Han-Do", "Lee", "HandsomeGuy", "12345L", true, "handolee@somewhere.com"),
+			User[] users  = {
+					new User("Han-Do", "Lee", "HandsomeGuy", "12345L", true, "g2scaredtocompile@gmail.com"),
 					new User("Mariana", "Lima", "BeautifulGirl", "67890M", true, "mariana@somewhere.com"),
 					new User("Sebastian", "Mendez", "CharmingGuy", "54321S", true, "sebastian@somewhere.com")
 			};
