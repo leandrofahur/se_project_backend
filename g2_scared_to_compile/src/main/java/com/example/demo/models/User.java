@@ -72,6 +72,20 @@ public class User {
 		this.updatedAt = new Date();
 	}
 	
+	//public User(String userName, String email, String password, String confirmPassword) {
+	public User(String userName, String email, String password) {
+		super();
+	
+		this.userName = userName;
+		this.email = email;
+		this.password = password;
+		//setPassword(confirmPassword);
+		//this.password = confirmPassword;
+		
+		this.createdAt = new Date();
+		//this.updatedAt = new Date();
+	}
+	
 	public long getId() {
 		return id;
 	}

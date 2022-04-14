@@ -36,13 +36,13 @@ public class ForgotPasswordController {
 		try {
 			String email = emailObject.toString().replace('}', ' ').substring(7);			
 			System.out.println(email.trim());
-			List<com.example.demo.models.User> _user = userRepository.findByEmail(email.trim());
+			Optional<com.example.demo.models.User> _user = userRepository.findByEmail(email.trim());
 			
 			if(_user.isEmpty()) {
 				return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);	
 			}
 			
-			forgotPasswordService.SendForgotPassword(_user.get(0));
+			forgotPasswordService.SendForgotPassword(_user.get());
 			return new ResponseEntity<>("Check your email box", HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -57,10 +57,10 @@ public class ForgotPasswordController {
 			String email = object[0];
 			String password = object[1].substring(10).trim();
 			
-			List<com.example.demo.models.User> userData = userRepository.findByEmail(email);
+			Optional<com.example.demo.models.User> userData = userRepository.findByEmail(email);
 			
-			if(userData.get(0).getEmail().equals(email)) {
-				com.example.demo.models.User _user = userData.get(0);
+			if(userData.get().getEmail().equals(email)) {
+				com.example.demo.models.User _user = userData.get();
 				_user.setPassword(password);				
 				_user.setEmail(email);
 				_user.setUpdatedAt(new Date());

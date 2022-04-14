@@ -22,7 +22,7 @@ public class ForgotPasswordService {
 		SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
 		simpleMailMessage.setTo(user.getEmail());
 		simpleMailMessage.setSubject("Reset Email Password");
-		simpleMailMessage.setText("To reset your password, click on the following link: http://localhost:8080/api/xykvzw50/resetpassword");
+		simpleMailMessage.setText("To reset your password, click on the following link: http://localhost:8081/resetpassword");
 		
 		javaMailSender.send(simpleMailMessage);
 	}
