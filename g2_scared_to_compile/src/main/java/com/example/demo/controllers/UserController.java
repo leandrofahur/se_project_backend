@@ -106,8 +106,8 @@ public class UserController {
 			_user.setFirstName(user.getFirstName());
 			_user.setLastName(user.getLastName());
 			_user.setUserName(user.getUserName());
-			_user.setPassword(user.getPassword());
-			_user.setIsAdmin(user.getIsAdmin());
+//			_user.setPassword(user.getPassword());
+//			_user.setIsAdmin(user.getIsAdmin());
 			_user.setEmail(user.getEmail());
 			_user.setUpdatedAt(new Date());
 			
