@@ -27,6 +27,27 @@ public class Cart {
 	public Cart() {
 		super();
 	}
+	public Cart(int session_id, int product_id, int quantity) {			// NEW --- Controller for appropriate cart posting 
+		this.sessionId = session_id;
+		this.productId = product_id;
+		this.quantity = quantity;
+	}
+
+	public int getSessionId() {
+		return sessionId;
+	}
+
+	public void setSessionId(int sessionId) {
+		this.sessionId = sessionId;
+	}
+
+	public int getProductId() {
+		return productId;
+	}
+
+	public void setProductId(int productId) {
+		this.productId = productId;
+	}
 
 	public Cart(int quantity) {
 		super();

@@ -92,9 +92,10 @@ public class G2ScaredToCompileApplication {
 			sessionRepository.save(new Session(100.0));
 			sessionRepository.save(new Session(150.0));
 			
-			cartRepository.save(new Cart(1));
-			cartRepository.save(new Cart(2));
-			cartRepository.save(new Cart(3));
+			/*
+			 * cartRepository.save(new Cart(1)); cartRepository.save(new Cart(2));
+			 * cartRepository.save(new Cart(3));
+			 */
 
 			
 			for (int i = 0; i < categories.length; i++) {

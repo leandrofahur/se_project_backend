@@ -64,7 +64,7 @@ public class CartController {
 	@PostMapping("/cart")
 	public ResponseEntity<Cart> Insert(@RequestBody Cart newCart) {
 		try {
-			Cart cart = cartRepository.save(new Cart(newCart.getQuantity()));
+			Cart cart = cartRepository.save(new Cart(newCart.getSessionId(), newCart.getProductId(), newCart.getQuantity()));
 			return new ResponseEntity<>(cart, HttpStatus.CREATED);
 			
 		} catch (Exception ex) {
