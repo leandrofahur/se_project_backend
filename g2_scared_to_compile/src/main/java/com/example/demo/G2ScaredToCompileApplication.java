@@ -101,9 +101,11 @@ public class G2ScaredToCompileApplication {
 			sessionRepository.save(new Session(100.0));
 			sessionRepository.save(new Session(150.0));
 			
-			cartRepository.save(new Cart(1));
-			cartRepository.save(new Cart(2));
-			cartRepository.save(new Cart(3));
+			/*
+			 * cartRepository.save(new Cart(1)); cartRepository.save(new Cart(2));
+			 * cartRepository.save(new Cart(3));
+			 */
+
 
 			
 			for (int i = 0; i < categories.length; i++) {
@@ -123,9 +125,9 @@ public class G2ScaredToCompileApplication {
 			}
       
 			User[] users  = {
-					new User("Han-Do", "Lee", "HandsomeGuy", "12345L", true, "g2scaredtocompile@gmail.com"),
-					new User("Mariana", "Lima", "BeautifulGirl", "67890M", true, "mariana@somewhere.com"),
-					new User("Sebastian", "Mendez", "CharmingGuy", "54321S", true, "sebastian@somewhere.com")
+					new User("Leandro", "Machado", "Han-Do", "12345L", true, "g2scaredtocompile@gmail.com"),
+					new User("Mariana", "Lima", "Mari", "67890M", true, "mariana@somewhere.com"),
+					new User("Sebastian", "Mendez", "Seth", "54321S", true, "sebastian@somewhere.com")
 			};
 			
 			UserPhone[] userPhones = {

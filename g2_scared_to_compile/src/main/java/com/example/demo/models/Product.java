@@ -43,6 +43,9 @@ public class Product {
 	@Column(name="productPic")
 	private String productPic;
 	
+	@Column(name="isFavorite")
+	private Boolean isFavorite;
+	
 	@Column(name="created_at")
 	private Date createdAt;
 	
@@ -81,6 +84,7 @@ public class Product {
 		this.price = price;
 		sku = sKU;
 		this.productPic = productPic;
+		this.isFavorite = false;
 		this.createdAt = new Date();
 		this.updatedAt = new Date();
 	}
@@ -129,6 +133,14 @@ public class Product {
 		return updatedAt;
 	}
 
+	public Boolean getIsFavorite() {
+		return isFavorite;
+	}
+
+	public void setIsFavorite(Boolean isFavorite) {
+		this.isFavorite = isFavorite;
+	}
+
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
@@ -162,12 +174,10 @@ public class Product {
 		this.productPic = productPic;
 	}
 	
-	
-
 //	public Set<Discount> getDiscounts() {
 //		return discounts;
 //	}
-//
+
 //	public void setDiscounts(Set<Discount> discounts) {
 //		this.discounts = discounts;
 //	}

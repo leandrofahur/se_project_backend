@@ -82,6 +82,7 @@ public class ProductController {
 			_product.setDescription(updatedProduct.getDescription());
 			_product.setPrice(updatedProduct.getPrice());
 			_product.setSKU(updatedProduct.getSKU());
+			_product.setIsFavorite(updatedProduct.getIsFavorite());
 			_product.setUpdatedAt(new Date());
 			
 			return new ResponseEntity<>(productRepository.save(_product), HttpStatus.OK);
