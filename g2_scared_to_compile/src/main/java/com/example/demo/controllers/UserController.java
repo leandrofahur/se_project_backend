@@ -62,18 +62,38 @@ public class UserController {
 		
 	}
 	
+//	@GetMapping("/users/{email}")
+//	public ResponseEntity<User> getUserById(@PathVariable("email") String email){
+//		Optional<User> userData = userRepository.findByEmail(email);
+//		
+//		if(userData.isPresent()) {
+//			return new ResponseEntity<>(userData.get(),HttpStatus.OK);
+//			
+//		} else {
+//			return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
+//		}
+//		
+//	}
+	
 	@PostMapping("/users")
 	public ResponseEntity<User> createUser(@RequestBody User user){
 		
 		try {
 
-			User _user = userRepository.save(new User(user.getFirstName(), user.getLastName(),
-					user.getUserName(), user.getPassword(), user.getIsAdmin(), user.getEmail()));
+//			User _user = userRepository.save(new User(user.getFirstName(), user.getLastName(),
+//					user.getUserName(), user.getPassword(), user.getIsAdmin(), user.getEmail()));
+			
+			User _user = userRepository.save(new User(
+					user.getUserName(),user.getEmail(), user.getPassword()));
+			
+//			User _user = userRepository.save(new User(
+//					user.getUserName(),user.getEmail(), user.getPassword(), user.getPassword()));
+			
 			
 			return new ResponseEntity<>(_user,HttpStatus.CREATED);
 			
 		}catch (Exception e) {
-			return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	
@@ -86,8 +106,8 @@ public class UserController {
 			_user.setFirstName(user.getFirstName());
 			_user.setLastName(user.getLastName());
 			_user.setUserName(user.getUserName());
-			_user.setPassword(user.getPassword());
-			_user.setIsAdmin(user.getIsAdmin());
+//			_user.setPassword(user.getPassword());
+//			_user.setIsAdmin(user.getIsAdmin());
 			_user.setEmail(user.getEmail());
 			_user.setUpdatedAt(new Date());
 			

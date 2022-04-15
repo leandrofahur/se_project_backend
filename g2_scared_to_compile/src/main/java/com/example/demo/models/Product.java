@@ -40,6 +40,12 @@ public class Product {
 	@Column(name="SKU")
 	private String sku;
 	
+	@Column(name="productPic")
+	private String productPic;
+	
+	@Column(name="isFavorite")
+	private Boolean isFavorite;
+	
 	@Column(name="created_at")
 	private Date createdAt;
 	
@@ -71,12 +77,14 @@ public class Product {
 	}
 
 	// TODO: Remember to re-generate with the new attributes on-hold: 
-	public Product(String name, String description, Float price, String sKU) {
+	public Product(String name, String description, Float price, String sKU, String productPic) {
 		super();
 		this.name = name;
 		this.description = description;
 		this.price = price;
 		sku = sKU;
+		this.productPic = productPic;
+		this.isFavorite = false;
 		this.createdAt = new Date();
 		this.updatedAt = new Date();
 	}
@@ -125,6 +133,14 @@ public class Product {
 		return updatedAt;
 	}
 
+	public Boolean getIsFavorite() {
+		return isFavorite;
+	}
+
+	public void setIsFavorite(Boolean isFavorite) {
+		this.isFavorite = isFavorite;
+	}
+
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
@@ -150,10 +166,18 @@ public class Product {
 		inventory.setProduct(this);
 	}
 
+	public String getProductPic() {
+		return productPic;
+	}
+
+	public void setProductPic(String productPic) {
+		this.productPic = productPic;
+	}
+	
 //	public Set<Discount> getDiscounts() {
 //		return discounts;
 //	}
-//
+
 //	public void setDiscounts(Set<Discount> discounts) {
 //		this.discounts = discounts;
 //	}

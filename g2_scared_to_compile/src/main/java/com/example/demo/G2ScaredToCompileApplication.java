@@ -48,14 +48,16 @@ public class G2ScaredToCompileApplication {
 		return args -> {			
 			
 			Product[] products = {
-				new Product("Product 01", "This is the product 01", 25.0f, "PRO-MED-WHI-COT"),
-				new Product("Product 02", "This is the product 02", 15.0f, "PRO-LAG-BLA-COT"),
-				new Product("Product 03", "This is the product 03", 5.0f, "PRO-SMA-GRA-COT")
+				new Product("Shoe Vermei", "This is the product 01", 125.0f, "PRO-MED-WHI-COT", "shoe01.png"),
+				new Product("Shoe verdi", "This is the product 02", 151.0f, "PRO-LAG-BLA-COT", "shoe02.png"),
+				new Product("Shoe Amoado", "This is the product 03", 500.0f, "PRO-SMA-GRA-COT", "shoe03.png"),
+				new Product("Shoe Voanu", "This is the product 04", 50.0f, "PRO-AMS-ARG-TOC", "shoe04.png")
 			};
 			
 			Category[] categories = {
-				new Category("Category 01", "This is the category 01"),
-				new Category("Category 02", "This is the category 02")
+				new Category("All", "This is the category 01"),
+				new Category("Women", "This is the category 02"),
+				new Category("Men", "This is the category 03")
 			};
 			
 			Inventory[] inventories = {
@@ -71,7 +73,14 @@ public class G2ScaredToCompileApplication {
 			
 			categories[0].addProduct(products[0]);
 			categories[0].addProduct(products[1]);
-			categories[1].addProduct(products[1]);				
+			categories[0].addProduct(products[2]);
+			categories[0].addProduct(products[3]);
+			
+			categories[1].addProduct(products[0]);
+			categories[1].addProduct(products[1]);
+			
+			categories[2].addProduct(products[2]);
+			categories[2].addProduct(products[3]);
 			
 			Discount [] discounts = {
 				new Discount("Discount 01", "Description1", 25, true),
@@ -92,9 +101,11 @@ public class G2ScaredToCompileApplication {
 			sessionRepository.save(new Session(100.0));
 			sessionRepository.save(new Session(150.0));
 			
-			cartRepository.save(new Cart(1));
-			cartRepository.save(new Cart(2));
-			cartRepository.save(new Cart(3));
+			/*
+			 * cartRepository.save(new Cart(1)); cartRepository.save(new Cart(2));
+			 * cartRepository.save(new Cart(3));
+			 */
+
 
 			
 			for (int i = 0; i < categories.length; i++) {
@@ -113,10 +124,10 @@ public class G2ScaredToCompileApplication {
 				productRepository.save(products[i]);
 			}
       
-      User[] users  = {
-					new User("Han-Do", "Lee", "HandsomeGuy", "12345L", true, "handolee@somewhere.com"),
-					new User("Mariana", "Lima", "BeautifulGirl", "67890M", true, "mariana@somewhere.com"),
-					new User("Sebastian", "Mendez", "CharmingGuy", "54321S", true, "sebastian@somewhere.com")
+			User[] users  = {
+					new User("Leandro", "Machado", "Han-Do", "12345L", true, "g2scaredtocompile@gmail.com"),
+					new User("Mariana", "Lima", "Mari", "67890M", true, "mariana@somewhere.com"),
+					new User("Sebastian", "Mendez", "Seth", "54321S", true, "sebastian@somewhere.com")
 			};
 			
 			UserPhone[] userPhones = {
